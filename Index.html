@@ -1,0 +1,138 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Sicovesto – Sistema de gestión</title>
+  <meta name="description" content="Sicovesto: el sistema con IA que te ayuda a gestionar ventas y el stock de tu negocio." />
+
+  <!-- Tipografías -->
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root{
+      --text:#ffffff;
+      --text-dim:rgba(255,255,255,.85);
+      --btn:#9ec8ff;
+      --btn-text:#0b1b31;
+      --btn-hover:#b6d6ff;
+      --shadow:0 10px 30px rgba(0,0,0,.35);
+    }
+
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{
+      margin:0;
+      color:var(--text);
+      font-family:Inter,system-ui,Segoe UI,Roboto,Helvetica,Arial,sans-serif;
+      background:#0f172a;
+      -webkit-font-smoothing:antialiased; -moz-osx-font-smoothing:grayscale;
+    }
+
+    /* ===== Header ===== */
+    header{
+      position:fixed; inset-inline:0; top:0; z-index:10;
+      padding:22px clamp(18px, 4vw, 48px);
+      display:flex; align-items:center; justify-content:space-between;
+      background:linear-gradient(180deg, rgba(0,0,0,.45), rgba(0,0,0,0));
+    }
+    .brand{font-family:"Playfair Display", serif; font-weight:700; letter-spacing:.5px; font-size:28px; text-shadow:0 2px 10px rgba(0,0,0,.5)}
+    nav ul{list-style:none; margin:0; padding:0; display:flex; gap:36px}
+    nav a{color:var(--text); text-decoration:none; font-weight:500; letter-spacing:.2px}
+    nav a:hover, nav a:focus{opacity:.85; text-decoration:underline}
+
+    /* ===== Hero ===== */
+    .hero{
+      position:relative; min-height:100vh; width:100%; display:grid; place-items:center; text-align:center;
+      overflow:hidden;
+      background: 
+        linear-gradient(rgba(4, 9, 20, .62), rgba(4, 9, 20, .62)),
+        url('https://images.unsplash.com/photo-1601979031925-424e53b6caaa?auto=format&fit=crop&w=2400&q=60') center/cover no-repeat fixed;
+    }
+    .hero__content{padding:140px 18px 96px; max-width:min(980px, 92vw)}
+    .title{
+      font-family:"Playfair Display", serif; font-weight:800; font-size:clamp(50px, 7vw, 96px); line-height:1.02; margin:0 0 10px;
+      text-shadow:0 10px 35px rgba(0,0,0,.6);
+    }
+    .subtitle{font-size:clamp(18px, 2.1vw, 24px); color:var(--text-dim); line-height:1.6; margin:0 auto 36px; text-wrap:balance}
+
+    .cta{
+      display:inline-block; border:0; border-radius:999px; padding:18px 36px; font-size:20px; font-weight:700;
+      background:var(--btn); color:var(--btn-text); cursor:pointer; box-shadow:var(--shadow);
+      transition:transform .16s ease, background .2s ease, box-shadow .2s ease;
+    }
+    .cta:hover{transform:translateY(-1px); background:var(--btn-hover); box-shadow:0 16px 40px rgba(0,0,0,.38)}
+    .cta:active{transform:translateY(0)}
+
+    /* ===== Placeholder secciones destino ===== */
+    section{padding:88px 24px; background:#0b1324}
+    section:nth-of-type(2n){background:#0e1830}
+    .container{max-width:1000px; margin:0 auto}
+    h2{font-family:"Playfair Display", serif; font-size:42px; margin:0 0 14px}
+    p{margin:0 0 12px; color:#e6eefc}
+
+    /* ===== Responsive ===== */
+    @media (max-width: 840px){
+      header{gap:10px}
+      nav ul{gap:20px}
+    }
+  </style>
+</head>
+<body>
+  <a href="#contenido" style="position:absolute;left:-10000px;top:auto;width:1px;height:1px;overflow:hidden;">Saltar al contenido</a>
+
+  <header aria-label="Navegación principal">
+    <div class="brand">Título de tu sitio</div>
+    <nav>
+      <ul>
+        <li><a href="#manuales">Manuales</a></li>
+        <li><a href="#acerca">Acerca de</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="contenido">
+    <section class="hero" role="banner">
+      <div class="hero__content">
+        <h1 class="title">Sicovesto</h1>
+        <p class="subtitle">el único sistema con inteligencia artificial que te ayudará a gestionar ventas y el stock de tu negocio.</p>
+        <a class="cta" href="#manuales" aria-label="Ir a Manuales">Leer más</a>
+      </div>
+    </section>
+
+    <!-- Secciones de ejemplo para los enlaces del menú -->
+    <section id="manuales">
+      <div class="container">
+        <h2>Manuales</h2>
+        <p>Aquí podés enlazar a tus manuales en PDF o a una wiki de ayuda.</p>
+      </div>
+    </section>
+
+    <section id="acerca">
+      <div class="container">
+        <h2>Acerca de</h2>
+        <p>Breve descripción de tu producto, ventajas, capturas y características.</p>
+      </div>
+    </section>
+
+    <section id="contacto">
+      <div class="container">
+        <h2>Contacto</h2>
+        <p>Agregá un formulario o tus datos de contacto.</p>
+      </div>
+    </section>
+  </main>
+
+  <script>
+    // Desplazamiento suave para anclas
+    document.querySelectorAll('a[href^="#"]').forEach(a=>{
+      a.addEventListener('click', e=>{
+        const id = a.getAttribute('href');
+        const el = document.querySelector(id);
+        if(el){ e.preventDefault(); el.scrollIntoView({behavior:'smooth'}); }
+      });
+    });
+  </script>
+</body>
+</html>
