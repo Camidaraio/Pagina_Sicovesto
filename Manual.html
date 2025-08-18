@@ -1,0 +1,102 @@
+
+
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Versión impresa – SICOVESTO</title>
+  <link rel="stylesheet" href="Manual.css">
+
+
+
+  <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;600;700;800&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+</head>
+<body>
+  <div class="topbar" role="toolbar" aria-label="Barra de herramientas del visor">
+    <a class="back" href="index.html#manuales" title="Volver">
+      <svg width="20" height="20" viewBox="0 0 24 24" aria-hidden="true"><path d="M15.41 7.41 14 6l-6 6 6 6 1.41-1.41L10.83 12z"/></svg>
+      <span>Volver</span>
+    </a>
+    <div class="brand" aria-hidden="true">
+      <svg class="book" viewBox="0 0 24 24"><path d="M18 2H8a4 4 0 0 0-4 4v13a3 3 0 0 0 3 3h12a1 1 0 0 0 1-1V3a1 1 0 0 0-1-1Zm-1 18H7a1 1 0 0 1-1-1V6a2 2 0 0 1 2-2h9Z"/></svg>
+      <div class="title" id="docTitle">Versión impresa</div>
+    </div>
+    <div class="spacer"></div>
+    <div class="controls">
+      <button class="tbtn" id="zoomOut" title="Alejar">
+        <svg viewBox="0 0 24 24"><path d="M19 13H5v-2h14v2z"/></svg>
+      </button>
+      <input class="zoomval" id="zoomVal" value="100%" readonly aria-label="Zoom actual">
+      <button class="tbtn" id="zoomIn" title="Acercar">
+        <svg viewBox="0 0 24 24"><path d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6v2z"/></svg>
+      </button>
+      <button class="tbtn" id="openTab" title="Abrir en nueva pestaña">
+        <svg viewBox="0 0 24 24"><path d="M14 3h7v7h-2V6.41l-9.29 9.3-1.42-1.42 9.3-9.29H14V3zM5 5h6v2H7v10h10v-4h2v6H5V5z"/></svg>
+      </button>
+      <a class="tbtn" id="download" title="Descargar" download>
+        <svg viewBox="0 0 24 24"><path d="M5 20h14v-2H5v2zM12 2v12l4-4 1.41 1.41L12 17.83l-5.41-5.42L8 10l4 4V2h0z"/></svg>
+      </a>
+      <button class="tbtn" id="print" title="Imprimir">
+        <svg viewBox="0 0 24 24"><path d="M19 8H5a3 3 0 0 0-3 3v4h4v4h12v-4h4v-4a3 3 0 0 0-3-3ZM7 19v-4h10v4H7Zm10-12V3H7v4h10Z"/></svg>
+      </button>
+    </div>
+  </div>
+
+  <main class="viewer" id="viewer">
+    <iframe id="pdf" class="frame" title="Visor PDF"></iframe>
+  </main>
+
+  <template id="errorTpl">
+    <div class="wrap">
+      <div class="card">
+        <h1>No se encontró el manual</h1>
+        <p>Verificá el enlace. Volvé a <a href="index.html#manuales">Manuales</a> para elegir uno válido.</p>
+      </div>
+    </div>
+  </template>
+
+  <script>
+    // Mapear claves a archivos reales. Cambiá las rutas a donde hospedes tus PDFs
+    const manuals = {
+      gemini:   { title: 'Guía clave API GEMINI – SICOVESTO', path: 'manuales/Guia clave API GEMINI - SICOVESTO.pdf' },
+      win7:     { title: 'Manual de Instalación – Windows 7', path: 'manuales/Manual de Instalacion - SICOVESTO - WINDOWS 7.pdf' },
+      win1011:  { title: 'Manual de Instalación – Windows 10/11', path: 'manuales/Manual de Instalación - SICOVESTO - WINDOWS 10_11 (1).pdf' },
+      usuario:  { title: 'Manual de Usuario – SICOVESTO', path: 'manuales/Manual de Usuario – SICOVESTO.pdf' }
+    };
+
+    const q = new URLSearchParams(location.search);
+    const key = q.get('doc') || 'gemini';
+    const data = manuals[key];
+
+    const pdfFrame = document.getElementById('pdf');
+    const titleEl = document.getElementById('docTitle');
+    const zoomVal = document.getElementById('zoomVal');
+    const download = document.getElementById('download');
+
+    let baseUrl = ''; let zoom = 100;
+
+    function setSrc(){
+      if(!data){
+        const tpl = document.getElementById('errorTpl').content.cloneNode(true);
+        document.getElementById('viewer').replaceWith(tpl);
+        return;
+      }
+      titleEl.textContent = 'Versión impresa – ' + data.title;
+      baseUrl = encodeURI(data.path);
+      pdfFrame.src = baseUrl + '#page=1&zoom=' + zoom;
+      download.href = baseUrl;
+    }
+
+    function updateZoomDisplay(){ zoomVal.value = Math.round(zoom) + '%'; }
+
+    document.getElementById('zoomIn').addEventListener('click', ()=>{ zoom = Math.min(200, zoom + 10); pdfFrame.src = baseUrl + '#page=1&zoom=' + zoom; updateZoomDisplay(); });
+    document.getElementById('zoomOut').addEventListener('click', ()=>{ zoom = Math.max(30, zoom - 10); pdfFrame.src = baseUrl + '#page=1&zoom=' + zoom; updateZoomDisplay(); });
+    document.getElementById('openTab').addEventListener('click', ()=>{ window.open(baseUrl, '_blank'); });
+    document.getElementById('print').addEventListener('click', ()=>{ try{ const w = window.open(baseUrl, '_blank'); if(w){ w.addEventListener('load', ()=>w.print()); } }catch(e){ window.print(); } });
+
+    setSrc(); updateZoomDisplay();
+  </script>
+</body>
+</html>

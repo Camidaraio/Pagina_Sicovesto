@@ -1,0 +1,43 @@
+:root{
+      --ink:#0b1b31;          /* azul noche de la landing */
+      --ink-2:#13314d;        /* tono secundario */
+      --paper:#e9ebf2;        /* gris muy claro usado en descargas/contacto */
+      --accent:#9ec8ff;       /* mismo botón/acento */
+      --text:#0b1b31;
+      --shadow:0 10px 30px rgba(0,0,0,.25);
+    }
+    *{box-sizing:border-box}
+    html,body{height:100%}
+    body{margin:0; background:var(--paper); color:var(--text); font-family:Inter,system-ui,Segoe UI,Roboto,Arial,sans-serif}
+
+    /* Top bar (similar a la captura) */
+    .topbar{
+      position:sticky; top:0; z-index:10; display:flex; align-items:center; gap:12px;
+      padding:10px 14px; background:linear-gradient(180deg, var(--ink), var(--ink-2));
+      color:#fff; box-shadow:var(--shadow);
+    }
+    .brand{display:flex; align-items:center; gap:10px; font-weight:700}
+    .brand .book{width:22px; height:22px}
+    .title{font-family:"Playfair Display", serif; font-size:18px}
+    .spacer{flex:1}
+    .tbtn{display:inline-flex; align-items:center; justify-content:center; width:36px; height:36px; border-radius:10px; border:1px solid rgba(255,255,255,.25); color:#fff; background:transparent; cursor:pointer}
+    .tbtn:hover{background:rgba(255,255,255,.1)}
+    .tbtn svg{width:18px; height:18px; fill:currentColor}
+    .back{display:inline-flex; align-items:center; gap:8px; color:#fff; text-decoration:none; font-weight:600; padding:6px 8px; border-radius:10px}
+    .back:hover{background:rgba(255,255,255,.1)}
+
+    /* Barra secundaria */
+    .controls{display:flex; align-items:center; gap:8px; margin-left:8px}
+    .zoomval{min-width:58px; height:30px; border-radius:6px; border:1px solid rgba(255,255,255,.25); background:rgba(0,0,0,.2); color:#fff; text-align:center}
+
+    /* Lienzo PDF */
+    .viewer{height:calc(100vh - 56px); display:grid; grid-template-columns:1fr;}
+    .frame{width:100%; height:100%; border:0; background:#cfd5df}
+
+    /* Mensaje error */
+    .wrap{padding:24px}
+    .card{max-width:800px; margin:40px auto; background:#fff; border-radius:16px; padding:24px; box-shadow:var(--shadow)}
+    h1{font-family:"Playfair Display", serif; margin:0 0 8px}
+    p{margin:.5rem 0}
+
+    @media (max-width:640px){ .title{display:none} }
