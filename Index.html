@@ -19,17 +19,35 @@
 
   <header aria-label="Navegación principal">
     <div class="brand">Sicovesto</div>
-    <nav>
-      <ul>
-        <li><a href="#descargas">Descargas</a></li>
-        <li><a href="#manuales">Manuales</a></li>
-        <li><a href="#contacto">Contacto</a></li>
 
 
-        
-      </ul>
-    </nav>
+<button class="nav-toggle" id="navToggle"
+        aria-label="Abrir menú"
+        aria-controls="primary-nav"
+        aria-expanded="false">
+  <span class="bar"></span>
+</button>
+
+
+ <nav id="primary-nav" aria-label="Menú principal">
+  <button class="nav-close" id="navClose" aria-label="Cerrar menú">
+    <svg viewBox="0 0 24 24" width="22" height="22" aria-hidden="true">
+      <path d="M18.3 5.7 12 12l6.3 6.3-1.4 1.4L10.6 13.4 4.3 19.7 2.9 18.3 9.2 12 2.9 5.7 4.3 4.3 10.6 10.6 16.9 4.3z" fill="#fff"/>
+    </svg>
+  </button>
+  <ul>
+    <li><a href="#descargas">Descargas</a></li>
+    <li><a href="#manuales">Manuales</a></li>
+    <li><a href="#contacto">Contacto</a></li>
+  </ul>
+</nav>
+
+
   </header>
+
+  <div id="navBackdrop" class="backdrop" hidden></div>
+
+
 
   <main id="contenido">
     <section class="hero" role="banner">
@@ -77,7 +95,7 @@
             <!-- Barras -->
             <svg viewBox="0 0 24 24"><path d="M4 5h1v14H4zm2 0h2v14H6zm3 0h1v14H9zm2 0h2v14h-2zm3 0h1v14h-1zm2 0h2v14h-2z"/></svg>
           </div>
-          <span>Compatible con barras</span>
+          <span>Compatible con lector de codigo de barras</span>
         </li>
 
         <li class="fitem" role="listitem">
@@ -118,7 +136,7 @@
     <aside class="price-card" aria-label="Compra">
       <div class="price-title">Precio lanzamiento</div>
       <div class="price-value">$ 49.999 ARS</div>
-      <div class="price-note">Licencia para 1 equipo. Incluye actualizaciones menores.</div>
+      <div class="price-note">Licencia para 1 equipo.</div>
 
       <!-- Reemplazá # por tu publicación real -->
       <a class="btn btn--ml" href="https://www.mercadolibre.com.ar/sistema-facturacion-ventas-stock-programa-gestion-sicovesto/up/MLAU3156855195?pdp_filters=item_id:MLA1507549733" target="_blank" rel="noopener">Comprar en Mercado Libre</a>
@@ -134,7 +152,7 @@
       <div class="grid">
         <div class="left">
           <h2>Descarga nuestro programa</h2>
-          <p class="lead">Desde aquí podrás acceder a la descarga del sistema completo.</p>
+          <p class="lead">Desde aquí podrás acceder a la descarga del sistema.</p>
 
           <div class="accordion">
             <details open>
@@ -144,7 +162,7 @@
               </summary>
               <div class="linklist" role="list">
                 <a class="dlink" href="manuales/Manual de Instalación - SICOVESTO - WINDOWS 10_11.pdf" role="listitem">Guía de instalación</a>
-                <a class="dlink" href="https://valenrusso.github.io/sicoupdates/SicovestoSetup_1.2.2.0_Test/SicovestoSetup_1.2.2.0_x64.cer" role="listitem">Certificado de editor</a>
+                <a class="dlink" href="https://valenrusso.github.io/sicoupdates/SicovestoSetup_1.2.3.0_Test/SicovestoSetup_1.2.3.0_x64.cer" role="listitem">Certificado de editor</a>
                 <a class="dlink" href="https://valenrusso.github.io/sicoupdates/SicovestoSetup.appinstaller" role="listitem">Instalar aplicación</a>
               </div>
             </details>
@@ -156,7 +174,16 @@
               </summary>
               <div class="linklist" role="list">
                 <a class="dlink" href="manuales/Manual de Instalacion - SICOVESTO - WINDOWS 7.pdf" role="listitem">Guía de instalación</a>
-                <a class="dlink" href="https://github.com/valenrusso/sicoupdates/releases/download/v1.2.2.0/SICOVESTO.-.V.1.2.2.0.zip" role="listitem">Descargar instalador</a>
+                <a class="dlink" href="https://github.com/valenrusso/sicoupdates/releases/download/v1.2.3.0/SICOVESTO.-.V.1.2.3.0.zip" role="listitem">Descargar instalador</a>
+              </div>
+            </details>
+            <details>
+              <summary>
+                <span>Utilidades</span>
+                <span class="indicator" aria-hidden="true"></span>
+              </summary>
+              <div class="linklist" role="list">
+                <a class="dlink" href="https://anydesk.com/es/downloads/thank-you?dv=win_exe" role="listitem">AnyDesk (Instalación remota)</a>
               </div>
             </details>
           </div>
@@ -170,14 +197,15 @@
     <section id="manuales" class="manuals">
       <div class="grid"><div class="left">
         <h2>Manuales</h2>
-          <p class="lead">Accedé a las guías y manuales de SICOVESTO.</p>
+          <p class="lead">Accedé a los manuales de SICOVESTO.</p>
         <ul class="manuals-list" role="list">
-          <li>
-            <a class="manual-item" href="manual.html?doc=gemini">
+             <li>
+            <a class="manual-item" href="manual.html?doc=usuario" role="listitem">
               <img src="Img/manuales.png" alt="Ícono/portada del manual" />
-              <span>Guía clave API GEMINI – SICOVESTO (PDF)</span>
+              <span>Manual de Uso</span>
             </a>
           </li>
+
           <li>
             <a class="manual-item" href="manual.html?doc=win7" role="listitem">
               <img src="Img/manuales.png" alt="Ícono/portada del manual" />
@@ -190,12 +218,7 @@
               <span>Manual de Instalación – Windows 10/11</span>
             </a>
           </li>
-          <li>
-            <a class="manual-item" href="manual.html?doc=usuario" role="listitem">
-              <img src="Img/manuales.png" alt="Ícono/portada del manual" />
-              <span>Manual de Usuario – SICOVESTO</span>
-            </a>
-          </li>
+         
         </ul>
         </div>
         <div class="right" aria-hidden="true"></div>
@@ -244,7 +267,36 @@
       });
     });
   </script>
+
+  <script>
+  // --- Hamburguesa ---
+  const toggle   = document.getElementById('navToggle');
+  const backdrop = document.getElementById('navBackdrop');
+  const navLinks = document.querySelectorAll('nav a');
+
+  const closeNav = () => {
+    document.body.classList.remove('nav-open');
+    toggle.setAttribute('aria-expanded','false');
+    backdrop.hidden = true;
+  };
+  const openNav = () => {
+    document.body.classList.add('nav-open');
+    toggle.setAttribute('aria-expanded','true');
+    backdrop.hidden = false;
+  };
+
+  toggle.addEventListener('click', () => {
+    document.body.classList.contains('nav-open') ? closeNav() : openNav();
+  });
+  backdrop.addEventListener('click', closeNav);
+  window.addEventListener('keydown', e => { if(e.key === 'Escape') closeNav(); });
+  navLinks.forEach(a => a.addEventListener('click', closeNav));
+
+  const closeBtn = document.getElementById('navClose');
+if (closeBtn) closeBtn.addEventListener('click', closeNav);
+
+</script>
+
+
 </body>
 </html>
-
-

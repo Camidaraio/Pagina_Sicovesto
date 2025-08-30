@@ -167,3 +167,93 @@
 @media (max-width:1000px){
   .features .grid{grid-template-columns:1fr}
 }
+
+
+/* === Mobile nav / Hamburguesa === */
+.nav-toggle{
+  display:none; align-items:center; justify-content:center;
+  width:44px; height:44px; border-radius:12px;
+  border:1px solid rgba(255,255,255,.25);
+  background:transparent; color:#fff; cursor:pointer;
+}
+.nav-toggle .bar,
+.nav-toggle .bar::before,
+.nav-toggle .bar::after{
+  content:""; display:block; width:22px; height:2px;
+  background:currentColor; border-radius:2px;
+  transition:transform .22s ease, opacity .22s ease;
+}
+.nav-toggle .bar::before{ transform:translateY(-6px); }
+.nav-toggle .bar::after{  transform:translateY( 6px); }
+
+/* animación a X */
+body.nav-open .nav-toggle .bar{ opacity:0; }
+body.nav-open .nav-toggle .bar::before{ transform:translateY(0) rotate(45deg); }
+body.nav-open .nav-toggle .bar::after{  transform:translateY(0) rotate(-45deg); }
+
+/* backdrop */
+.backdrop{
+  position:fixed; inset:0; background:rgba(0,0,0,.45);
+  opacity:0; pointer-events:none; transition:opacity .25s;
+  z-index:9;
+}
+body.nav-open .backdrop{ opacity:1; pointer-events:auto; }
+
+/* Panel */
+@media (max-width: 840px){
+  .nav-toggle{ display:inline-flex; }
+
+  header nav{
+    position:fixed; top:0; right:0; height:100vh;
+    width:min(84vw, 340px);
+    padding:100px 24px 24px;
+    background:linear-gradient(180deg, rgba(4,9,20,.96), rgba(4,9,20,.92));
+    backdrop-filter: blur(6px);
+    transform:translateX(100%);
+    transition:transform .25s ease;
+    box-shadow:-12px 0 30px rgba(0,0,0,.35);
+    z-index:10;
+  }
+  header nav ul{ flex-direction:column; gap:22px; }
+  header nav a{ font-size:20px; }
+
+  body.nav-open header nav{ transform:translateX(0); }
+}
+
+/* por defecto oculto en desktop */
+.nav-close{ display:none; }
+
+/* mostrar y posicionar solo en mobile */
+@media (max-width:840px){
+  .nav-close{
+    position:absolute; top:12px; right:12px;
+    width:40px; height:40px;
+    display:inline-flex; align-items:center; justify-content:center;
+    background:transparent; color:#fff;
+    border:1px solid rgba(255,255,255,.25); border-radius:10px;
+    cursor:pointer; z-index:1;
+  }
+  .nav-close:hover{ background:rgba(255,255,255,.08); }
+  .nav-close svg{ pointer-events:none; }
+}
+/* Desktop: llena la columna (puede recortar un poco) */
+.contact .right{
+  min-height:520px;
+  background: #e9ebf2 url('Img/logo-sinfondo-1920.png') center/cover no-repeat;
+}
+
+/* Tablet/Mobile: mostrar el logo completo y centrado */
+@media (max-width: 980px){
+  .contact .right{
+    min-height: 52vh;            /* altura visible cómoda */
+    background-size: contain;    /* <— clave para que no se recorte */
+    background-position: center; /* centrado vertical/horizontal */
+    padding: 20px 0;             /* respiro arriba/abajo */
+  }
+}
+
+/* Muy chico (opcional) */
+@media (max-width: 400px){
+  .contact .right{ min-height: 40vh; }
+}
+
